@@ -1,19 +1,33 @@
-/*
- * 1. Create a list that holds all of your cards
-    2. Create all the variables
- */
+// After following this tutorial, finished the game
+// http://www.youtube.com/watch?v=c_ohDPWmsM0
+// fix modal results
+var cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+var cardsStorage = [];
+var cardsIds = [];
+var cardsFlipped = 0;
 
+var countMoves = document.querySelector(".moves");
+const stars = document.querySelectorAll(".fa-star"); // identify variables for star icons
+var deck = document.getElementById('deck');
+// Get the modal
+var modal = document.getElementById('myModal');
+const modalContent = document.querySelector('.modal-content p');
+var span = document.getElementsByClassName("close")[0];
+var modalMessage = '';
 
-/*
- * 3. Display the cards on the page
- *   - 4. shuffle the list of cards using the provided "shuffle" method below
- *   - 5. loop through each card and create its HTML
- *   - 6. add each card's HTML to the page
- */
+// time variables
+var second = 0,
+    minute = 0;
+hour = 0;
+var timer = document.querySelector(".timer");
+var interval;
+
+// var moves = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -26,41 +40,131 @@ function shuffle(array) {
     return array;
 }
 
+function newBoard() {
+    // reset moves
+    moves = 0;
+    countMoves.innerHTML = moves;
 
-/*
- * 7. set up the event listener for a card. If a card is clicked:
- *  - 8. display the card's symbol (put this functionality in another function that you call from this one)
- *  - 9. add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - 10. if the list already has another card, check to see if the two cards match
- *    11. + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    12. + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    13. + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    14. + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+    cardsFlipped = 0;
+    var displayCards = '';
 
-// list that holds all the cards
-const imageList = ['fas fa-lemon', 'fas fa-bus', 'fas fa-smile', 'fas fa-lemon', 'fas fa-bicycle', 'fas fa-dove', 'fas fa-hand-peace', 'fas fa-piggy-bank'];
-const len = imageList.length;
+    shuffle(cardsArray);
+    for (var i = 0; i < cardsArray.length; i++) {
+        displayCards += '<div id="card_' + i + '" onclick="cardFlip(this,\'' + cardsArray[i] + '\')"></div>';
+    }
+
+    deck.innerHTML = displayCards;
+    // reset stars rating
+    for (var i = 0; i < stars.length; i++) {
+        stars[i].style.color = "#FFD700";
+        stars[i].style.visibility = "visible";
+    }
+
+}
+
+newBoard();
+
+function cardFlip(card, val) {
+    if (card.innerHTML == "" && cardsStorage.length < 2) {
+        moveCounter();
+        card.style.background = '#FFF';
+        card.innerHTML = val;
+        if (cardsStorage.length == 0) {
+            cardsStorage.push(val);
+            cardsIds.push(card.id);
+        } else if (cardsStorage.length == 1) {
+            cardsStorage.push(val);
+            cardsIds.push(card.id);
 
 
+            if (cardsStorage[0] == cardsStorage[1]) {
+                cardsFlipped += 2;
+                // Clear both arrays
+                cardsStorage = [];
+                cardsIds = [];
+                // Check to see if the whole board is cleared
+                if (cardsFlipped === cardsArray.length) {
+                    ///////////////////////
+                    modal.style.display = "block";
+                    modalMessage = 'You are Winner ';
+                    modalContent.innerText = modalMessage;
 
-// display the cards on the page
-function generateCards() {
-  const ul = document.querySelector('.deck');
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
 
-      for (let i = 0; i < 16; i++) {
-          let li = document.createElement('li');
-          li.className = 'card';
-          let icon = document.createElement('i');
+                    resetBoard();
 
-          //assign classes
-          icon.className = imageList[i];
+                    deck.innerHTML = "";
+                    newBoard();
+                }
+            } else {
+                function flip2Back() {
+                    // Flip the 2 cards back over
+                    var cardOne = document.getElementById(cardsIds[0]);
+                    var cardTwo = document.getElementById(cardsIds[1]);
+                    cardOne.style.background = 'linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%)';
+                    cardOne.innerHTML = "";
+                    cardTwo.style.background = 'linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%)';
+                    cardTwo.innerHTML = "";
+                    // Clear both arrays
+                    cardsStorage = [];
+                    cardsIds = [];
 
-          ul.appendChild(li);
-          li.appendChild(icon);
-      }
+                }
+                setTimeout(flip2Back, 700);
+            }
+        }
+    }
 }
 
 
-shuffle(imageList); //works
-generateCards(); //works
+
+// Function to calculate Game Time
+function startTimer() {
+    interval = setInterval(function() {
+        timer.innerHTML = minute + " mins " + second + " secs ";
+        second++;
+        if (second == 60) {
+            minute++;
+            second = 0;
+        }
+        if (minute == 60) {
+            hour++;
+            minute = 0;
+        }
+    }, 1000);
+}
+
+
+// Function to calculate moves
+function moveCounter() {
+    moves++;
+    countMoves.textContent = moves;
+    //start timer on first click
+    if (moves == 1) {
+        second = 1;
+        startTimer();
+    }
+    // setting rates based on moves
+    if (moves > 16 && moves < 28) {
+        for (i = 0; i < 3; i++) {
+            if (i > 1) {
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    } else if (moves > 24) {
+        for (i = 0; i < 3; i++) {
+            if (i > 0) {
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+}
+
+function resetBoard() {
+    clearInterval(interval);
+    timer.innerHTML = '0 mins 0 secs';
+    countMoves.innerHTML = '';
+    newBoard();
+}
