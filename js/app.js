@@ -18,11 +18,10 @@ var modalMessage = '';
 // time variables
 var second = 0,
     minute = 0;
-hour = 0;
+    hour = 0;
 var timer = document.querySelector(".timer");
 var interval;
 
-// var moves = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -50,7 +49,7 @@ function newBoard() {
 
     shuffle(cardsArray);
     for (var i = 0; i < cardsArray.length; i++) {
-        displayCards += '<div id="card_' + i + '" onclick="cardFlip(this,\'' + cardsArray[i] + '\')"></div>';
+        displayCards += '<div class="card" id="card_' + i + '" onclick="cardFlip(this,\'' + cardsArray[i] + '\')"></div>';
     }
 
     deck.innerHTML = displayCards;
@@ -86,9 +85,11 @@ function cardFlip(card, val) {
                 if (cardsFlipped === cardsArray.length) {
                     ///////////////////////
                     modal.style.display = "block";
-                    modalMessage = 'You are Winner ';
+                    modalMessage = 'Congratulations! You are the winner! Would you like to play again?'
+                    modalMessage += 'Time: ' + timer.innerText;
+                    modalMessage += 'It took you ' + countMoves.innerText + 'moves';
+                    // how much time it took to win the game, and what the star rating was.
                     modalContent.innerText = modalMessage;
-
                     span.onclick = function() {
                         modal.style.display = "none";
                     }

@@ -4,7 +4,7 @@ body {
 	color: rebeccapurple;
 }
 
-#deck{
+#deck {
 	background:rebeccapurple;
 	width:70%;
 	padding:25px;
@@ -12,8 +12,9 @@ body {
 	display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
-#deck > div{
+.card {
 	/* background: url(../card_bg.jpg) no-repeat; */
 	background: linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%);
 	width:5rem;
@@ -26,7 +27,6 @@ body {
   justify-content: center;
   align-items: center;
 	text-align:center;
-
 }
 .flex-grid-thirds {
 	background-color: mediumturquoise;
@@ -90,3 +90,10 @@ ul {
 .fa-repeat {
 	font-size: 6em;
 }
+
+/*
+fix responsivness for all the devices
+Add CSS animations when cards are clicked, unsuccessfully matched, and successfully matched
+store game state using local storage
+keyboard shortcuts for gameplay
+ */
