@@ -28,6 +28,9 @@ body {
   align-items: center;
 	text-align:center;
 }
+.card:active {
+		transform: rotate(1deg);
+}
 .flex-grid-thirds {
 	background-color: mediumturquoise;
 	width: 70%;
@@ -58,22 +61,38 @@ body {
 /* Modal Content */
 .modal-content {
     background-color: #fff;
-    margin: auto;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 30px;
     border: 1px solid #888;
-    width: 80%;
+		width: 60%;
+    text-align: center;
+    line-height: 2.5rem;
+    font-size: 1.5rem;
 }
 
 /* The Close Button */
 .close {
     color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
+.close:before {
+   content: "Play again \2713 ";
+}
+
+.close:before {
+   content: "Play again \2713 ";
+}
+
+.close:after {
+   content: "";
+}
+
 .close:hover,
-.close:focus {
+.close:focus,
+.restart:hover,
+.restart:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

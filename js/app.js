@@ -1,31 +1,31 @@
-// After following this tutorial, finished the game
+// After following this tutorial, manage to finish the game
+// cardFlip function
 // http://www.youtube.com/watch?v=c_ohDPWmsM0
-// fix modal results
-var cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
-var cardsStorage = [];
-var cardsIds = [];
-var cardsFlipped = 0;
+const cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+let cardsStorage = [];
+let cardsIds = [];
+let cardsFlipped = 0;
 
-var countMoves = document.querySelector(".moves");
+let countMoves = document.querySelector(".moves");
 const stars = document.querySelectorAll(".fa-star"); // identify variables for star icons
-var deck = document.getElementById('deck');
+let deck = document.getElementById('deck');
 // Get the modal
-var modal = document.getElementById('myModal');
+let modal = document.getElementById('myModal');
 const modalContent = document.querySelector('.modal-content p');
-var span = document.getElementsByClassName("close")[0];
-var modalMessage = '';
+let span = document.getElementsByClassName("close")[0];
+let modalMessage = '';
 
 // time variables
-var second = 0,
-    minute = 0;
+let second = 0,
+    minute = 0,
     hour = 0;
-var timer = document.querySelector(".timer");
-var interval;
+let timer = document.querySelector(".timer");
+let interval;
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
         temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -40,21 +40,19 @@ function shuffle(array) {
 }
 
 function newBoard() {
-    // reset moves
-    moves = 0;
+    moves = 0; // reset moves
     countMoves.innerHTML = moves;
 
     cardsFlipped = 0;
-    var displayCards = '';
-
-    shuffle(cardsArray);
-    for (var i = 0; i < cardsArray.length; i++) {
+    let displayCards = '';
+    shuffle(cardsArray); // shuffle cards
+    for (let i = 0; i < cardsArray.length; i++) {
         displayCards += '<div class="card" id="card_' + i + '" onclick="cardFlip(this,\'' + cardsArray[i] + '\')"></div>';
     }
 
     deck.innerHTML = displayCards;
     // reset stars rating
-    for (var i = 0; i < stars.length; i++) {
+    for (let i = 0; i < stars.length; i++) {
         stars[i].style.color = "#FFD700";
         stars[i].style.visibility = "visible";
     }
@@ -69,51 +67,58 @@ function cardFlip(card, val) {
         card.style.background = '#FFF';
         card.innerHTML = val;
         if (cardsStorage.length == 0) {
-            cardsStorage.push(val);
-            cardsIds.push(card.id);
-        } else if (cardsStorage.length == 1) {
+            // gets fitst card [0] and pushes into array
             cardsStorage.push(val);
             cardsIds.push(card.id);
 
+        } else if (cardsStorage.length == 1) {
+            // gets both cards [0][1] and pushes them into array
+            cardsStorage.push(val);
+            cardsIds.push(card.id);
 
             if (cardsStorage[0] == cardsStorage[1]) {
+                // counts 8 pairs
                 cardsFlipped += 2;
+
                 // Clear both arrays
                 cardsStorage = [];
                 cardsIds = [];
                 // Check to see if the whole board is cleared
                 if (cardsFlipped === cardsArray.length) {
-                    ///////////////////////
+                    // modal starts here
                     modal.style.display = "block";
-                    modalMessage = 'Congratulations! You are the winner! Would you like to play again?'
-                    modalMessage += 'Time: ' + timer.innerText;
-                    modalMessage += 'It took you ' + countMoves.innerText + 'moves';
+                    modalMessage = 'Congratulations! You are the winner!'
+                    modalMessage += '<br>Time: ' + timer.innerText;
+                    modalMessage += '<br>It took you ' + countMoves.innerText + ' moves';
+                    modalMessage += '<br>Would you like to play again? ';
                     // how much time it took to win the game, and what the star rating was.
-                    modalContent.innerText = modalMessage;
-                    span.onclick = function() {
-                        modal.style.display = "none";
-                    }
+                    modalContent.innerHTML = modalMessage;
 
+                    span.addEventListener('click', function() {
+                      modal.style.display = "none";
+                    });
                     resetBoard();
-
                     deck.innerHTML = "";
                     newBoard();
                 }
             } else {
                 function flip2Back() {
-                    // Flip the 2 cards back over
-                    var cardOne = document.getElementById(cardsIds[0]);
-                    var cardTwo = document.getElementById(cardsIds[1]);
+                    // Flip the two cards back over
+                    let cardOne = document.getElementById(cardsIds[0]);
+                    let cardTwo = document.getElementById(cardsIds[1]);
+
                     cardOne.style.background = 'linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%)';
                     cardOne.innerHTML = "";
+                    // add style.animation here
                     cardTwo.style.background = 'linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%)';
                     cardTwo.innerHTML = "";
+                    // add style.animation here
+                    
                     // Clear both arrays
                     cardsStorage = [];
                     cardsIds = [];
-
                 }
-                setTimeout(flip2Back, 700);
+                setTimeout(flip2Back, 600);
             }
         }
     }
@@ -121,7 +126,7 @@ function cardFlip(card, val) {
 
 
 
-// Function to calculate Game Time
+// Function to Calculate Game Time
 function startTimer() {
     interval = setInterval(function() {
         timer.innerHTML = minute + " mins " + second + " secs ";
@@ -138,7 +143,7 @@ function startTimer() {
 }
 
 
-// Function to calculate moves
+// Function to Calculate Moves
 function moveCounter() {
     moves++;
     countMoves.textContent = moves;
@@ -163,6 +168,7 @@ function moveCounter() {
     }
 }
 
+// Function to Reset Board
 function resetBoard() {
     clearInterval(interval);
     timer.innerHTML = '0 mins 0 secs';
