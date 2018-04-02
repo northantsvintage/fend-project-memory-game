@@ -1,8 +1,8 @@
-// Following various tutorials on Memory Game
-// cardFlip function from Adam Khoury Youtube Tutorial
+// cardFlip function refactored from Adam Khoury Youtube Tutorial
 // http://www.youtube.com/watch?v=c_ohDPWmsM0
-// let cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
-let cardsArray = ['A', 'A', 'P', 'P'];
+
+// variables
+let cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
 let cardsStorage = [];
 let cardsIds = [];
 let cardsFlipped = 0;
