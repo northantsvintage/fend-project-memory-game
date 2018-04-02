@@ -1,31 +1,15 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 License: none (public domain) */
 /* CSS RESET */
 /******************************************************************************/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     font-size: 100%;
+     font: inherit;
+     vertical-align: baseline;
 }
-
-html, body {
+ html, body {
      width: 100%;
      height: 100%;
      margin: 0;
@@ -33,9 +17,12 @@ html, body {
 }
  body {
      font-family: 'Fredericka the Great', cursive;
-     background-color: peachpuff;
+     background-color: #ffdab9 ;
      color: #663399;
-		 font-weight: bold;
+     font-weight: bold;
+}
+ .heading {
+     font-size: 2rem;
 }
  #deck {
      background:#663399;
@@ -46,6 +33,16 @@ html, body {
      display: flex;
      flex-wrap: wrap;
      justify-content: space-between;
+}
+ .flex-grid-thirds {
+     background-color: #48D1CC;
+     width: 70%;
+     max-width: 600px;
+     margin: 0 auto;
+     display: flex;
+     justify-content: space-between;
+     padding: 25px;
+     text-align: center;
 }
  .card {
      background: linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%);
@@ -63,21 +60,6 @@ html, body {
  .card:active {
      transform: rotate(1deg);
 }
- .flex-grid-thirds {
-     background-color: #48D1CC;
-     width: 70%;
-     max-width: 600px;
-     margin: 0 auto;
-     display: flex;
-     justify-content: space-between;
-     padding: 25px;
-     text-align: center;
-}
-
- .heading {
-		 font-size: 2rem;
-	 }
-
 /* The Modal (background) */
  .modal {
      display: none;
@@ -135,42 +117,41 @@ html, body {
  .stars, .modal-stars {
      list-style-type: none;
 }
-.modal-stars {
-	display: inline-flex;
+/* Modal */
+ .modal-stars {
+     display: inline-flex;
 }
  .moves, .timer {
      font-size: 1.3rem;
      color: #ffdb00;
-		 position: relative;
-		 top: 5px;
+     position: relative;
+     top: 5px;
 }
+/* Repeat Button */
  .fa-repeat {
      font-size: 4em;
 }
-
 /* RESPONSIVE */
-
 /* UP TO 549px */
-@media screen and (max-width: 549px) {
-	.moves, .timer {
-			font-size: 0.9rem;
-			color: #ffdb00;
- }
- 	.heading {
-		font-size: 1rem;
-	}
-	.card {
-		margin: 3px;
-		padding: 1px;
-	}
+ @media screen and (max-width: 549px) {
+     .moves, .timer {
+         font-size: 0.9rem;
+         color: #ffdb00;
+    }
+     .heading {
+         font-size: 1rem;
+    }
+     .card {
+         margin: 3px;
+         padding: 1px;
+    }
 }
-
-@media screen and (min-width: 550px) and (max-width: 700px) {
-	.heading {
-		font-size: 1.2rem;
-	}
-	.card {
-		margin: 5px;
-		padding: 3px;
-	}
+ @media screen and (min-width: 550px) and (max-width: 700px) {
+     .heading {
+         font-size: 1.2rem;
+    }
+     .card {
+         margin: 5px;
+         padding: 3px;
+    }
 }
