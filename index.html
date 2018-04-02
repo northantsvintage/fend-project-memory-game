@@ -1,43 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
-	 <link rel="stylesheet" href="css/app.css">
+<!doctype html>
+<html lang="en">
    <head>
-      <style>
-      </style>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+      <link rel="stylesheet" href="css/app.css">
+      <head>
+         <style>
+         </style>
    </head>
    <body>
-		 <div class="flex-grid-thirds">
-       <h1>Memory Game</h1>
-			 <div class="col">
-				 <p>Timer</p>
- 	      <span class="timer">0 mins 0 secs</span>
-			 </div>
-			<div class="col">
-				<p>Moves</p>
-	      <span class="moves"></span>
-			</div>
-			<div class="col">
-				<ul class="stars">
-	         <li><i class="fa fa-star"></i></li>
-	         <li><i class="fa fa-star"></i></li>
-	         <li><i class="fa fa-star"></i></li>
-	      </ul>
-			</div>
-			<div class="col">
-				<p class="restart" onclick="resetBoard()">
-	      <i class="fa fa-repeat"></i>
-	      </p>
-			</div>
-		</div>
-
+      <div class="flex-grid-thirds">
+         <h1 class="heading">Memory <br> Game</h1>
+         <div class="col">
+            <p>Timer</p>
+            <span class="timer">0 mins 0 secs</span>
+         </div>
+         <div class="col">
+            <p>Moves</p>
+            <span class="moves"></span>
+         </div>
+         <div class="col">
+            <ul class="stars">
+               <li><i class="fa fa-star"></i></li>
+               <li><i class="fa fa-star"></i></li>
+               <li><i class="fa fa-star"></i></li>
+            </ul>
+         </div>
+         <div class="col">
+            <p class="restart">
+               <i class="fa fa-repeat"></i>
+            </p>
+         </div>
+      </div>
       <div id="deck"></div>
       <!-- The Modal -->
       <div id="myModal" class="modal">
          <!-- Modal content -->
          <div class="modal-content">
-             <p></p>
+            <p></p>
             <span class="close"></span>
          </div>
       </div>

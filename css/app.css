@@ -1,118 +1,172 @@
-body {
-	font-family: 'Fredericka the Great', cursive;
-	background-color: peachpuff;
-	color: rebeccapurple;
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* CSS RESET */
+/******************************************************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
-#deck {
-	background:rebeccapurple;
-	width:70%;
-	padding:25px;
-	margin:0px auto;
-	display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+html, body {
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+}
+ body {
+     font-family: 'Fredericka the Great', cursive;
+     background-color: peachpuff;
+     color: #663399;
+}
+ #deck {
+     background:#663399;
+     width: 70%;
+     max-width: 600px;
+     padding: 25px;
+     margin: 0px auto;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+}
+ .card {
+     background: linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%);
+     width: 5rem;
+     height: 5rem;
+     margin: 10px;
+     padding: 20px;
+     font-size: 64px;
+     cursor: pointer;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-align:center;
+}
+ .card:active {
+     transform: rotate(1deg);
+}
+ .flex-grid-thirds {
+     background-color: #48D1CC;
+     width: 70%;
+     max-width: 600px;
+     margin: 0 auto;
+     display: flex;
+     justify-content: space-between;
+     padding: 25px;
+     text-align: center;
+}
 
-}
-.card {
-	/* background: url(../card_bg.jpg) no-repeat; */
-	background: linear-gradient(160deg, #f4ae99 0%, #bb7ebd 100%);
-	width:5rem;
-	height:5rem;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
-	cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-	text-align:center;
-}
-.card:active {
-		transform: rotate(1deg);
-}
-.flex-grid-thirds {
-	background-color: mediumturquoise;
-	width: 70%;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-	padding:25px;
-	text-align: center;
-}
-.flex-grid-thirds .col {
-	width: 22%;
-}
+ .heading {
+		 font-size: 2rem;
+	 }
+
 /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ .modal {
+     display: none;
+    /* Hidden by default */
+     position: fixed;
+    /* Stay in place */
+     z-index: 1;
+    /* Sit on top */
+     padding-top: 100px;
+    /* Location of the box */
+     left: 0;
+     top: 0;
+     width: 100%;
+    /* Full width */
+     height: 100%;
+    /* Full height */
+     overflow: auto;
+    /* Enable scroll if needed */
+     background-color: rgb(0,0,0);
+    /* Fallback color */
+     background-color: rgba(0,0,0,0.4);
+    /* Black w/ opacity */
 }
-
 /* Modal Content */
-.modal-content {
-    background-color: #fff;
-    margin: 0 auto;
-    padding: 30px;
-    border: 1px solid #888;
-		width: 60%;
-    text-align: center;
-    line-height: 2.5rem;
-    font-size: 1.5rem;
+ .modal-content {
+     background-color: #fff;
+     margin: 0 auto;
+     padding: 30px;
+     border: 1px solid #888;
+     width: 60%;
+     text-align: center;
+     line-height: 2.5rem;
+     font-size: 1.5rem;
 }
-
 /* The Close Button */
-.close {
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
+ .close {
+     color: #48D1CC;
+     font-size: 28px;
+     font-weight: bold;
+}
+ .close:before {
+     content: "Play again \2713 ";
+}
+ .close:before {
+     content: "Play again \2713 ";
+}
+ .close:after {
+     content: "";
+}
+ .close:hover, .close:focus, .restart:hover, .restart:focus {
+     color: #ffd700;
+     text-decoration: none;
+     cursor: pointer;
+}
+ .stars {
+     list-style-type: none;
+}
+ .moves, .timer {
+     font-size: 1.3rem;
+     color: #ffdb00;
+		 position: relative;
+		 top: 5px;
+}
+ .fa-repeat {
+     font-size: 4em;
 }
 
-.close:before {
-   content: "Play again \2713 ";
+/* RESPONSIVE */
+
+/* UP TO 549px */
+@media screen and (max-width: 549px) {
+	.moves, .timer {
+			font-size: 0.9rem;
+			color: #ffdb00;
+ }
+ 	.heading {
+		font-size: 1rem;
+	}
+	.card {
+		margin: 3px;
+		padding: 1px;
+	}
 }
 
-.close:before {
-   content: "Play again \2713 ";
+@media screen and (min-width: 550px) and (max-width: 700px) {
+	.heading {
+		font-size: 1.2rem;
+	}
+	.card {
+		margin: 5px;
+		padding: 3px;
+	}
 }
-
-.close:after {
-   content: "";
-}
-
-.close:hover,
-.close:focus,
-.restart:hover,
-.restart:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-ul {
-	list-style-type: none;
-}
-
-.moves, .timer {
-	font-size: 1.3rem;
-	color: yellow;
-}
-.fa-repeat {
-	font-size: 6em;
-}
-
-/*
-fix responsivness for all the devices
-Add CSS animations when cards are clicked, unsuccessfully matched, and successfully matched
-store game state using local storage
-keyboard shortcuts for gameplay
- */
