@@ -44,7 +44,6 @@ function shuffle(array) {
 * newBoard creates populates .deck with div.card
 * every card have separate id created in a loop
 * resets number of moves, flipped cards, star rating to create new board
-*
 */
 function newBoard() {
     moves = 0; // reset moves
@@ -69,19 +68,18 @@ function newBoard() {
 newBoard();
 
 /* function cardFlip
-* if nothing inside the div and that the amount of memory cards turned is less than two
-   The card can be flipped
-   if no cards already flipped or that there is only one card flipped
-     set the card as flipped and save them in the memory
-     else if one card is flipped
-     set the card as flipped and save them in the memory
-       if the values of the two cards are the same
-         add 2 to the match cards
-         if the amount on the cards is the same as the length of the memory
-           modal kicks in
-         else
-         If the two cards don't match cards will be flip back again after 600ms
-*
+  if nothing inside the div and that the amount of memory cards turned is less than two
+  The card can be flipped
+  if no cards already flipped or that there is only one card flipped
+  set the card as flipped and save them in the memory
+  else if one card is flipped
+  set the card as flipped and save them in the memory
+  if the values of the two cards are the same
+  add 2 to the match cards
+  if the amount on the cards is the same as the length of the memory
+  modal kicks in
+  else
+  If the two cards don't match cards will be flip back again after 600ms
 */
 function cardFlip(card, val) {
   // nothing inside of div and cards in memory less then 2
@@ -152,8 +150,10 @@ function cardFlip(card, val) {
 
 
 
-// function startTimer to calculate game time
-// increase 1sec at a time
+/*
+* function startTimer to calculate game time
+* increase 1sec at a time
+*/
 function startTimer() {
     interval = setInterval(function() {
         timer.innerHTML = minute + ' mins ' + second + ' secs ';
