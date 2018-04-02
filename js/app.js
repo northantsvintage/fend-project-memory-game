@@ -1,7 +1,8 @@
 // Following various tutorials on Memory Game
 // cardFlip function from Adam Khoury Youtube Tutorial
 // http://www.youtube.com/watch?v=c_ohDPWmsM0
-let cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+// let cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+let cardsArray = ['A', 'A', 'P', 'P'];
 let cardsStorage = [];
 let cardsIds = [];
 let cardsFlipped = 0;
@@ -10,18 +11,19 @@ let countMoves = document.querySelector('.moves'); // moves counter
 const stars = document.querySelectorAll('.fa-star'); // star icons
 let deck = document.getElementById('deck'); // cards will be populated here
 const restartBtn = document.querySelector('.restart'); // restart button
+let starRating = document.querySelector('.stars');
 // Get the modal
 let modal = document.getElementById('myModal');
 const modalContent = document.querySelector('.modal-content p');
 let span = document.getElementsByClassName('close')[0];
 let modalMessage = '';
-
 // time variables
 let second = 0;
 let minute = 0;
 let hour = 0;
 let timer = document.querySelector('.timer');
 let interval;
+let moves = 0;
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -108,12 +110,13 @@ function cardFlip(card, val) {
                 // flipped cards equal length of memory game is over, modal kicks in
                 if (cardsFlipped === cardsArray.length) {
                     // modal starts here
+                    // how much time it took to win the game, and what the star rating was.
                     modal.style.display = 'block';
                     modalMessage = 'Congratulations! You are the winner!'
                     modalMessage += '<br>Time: ' + timer.innerText;
                     modalMessage += '<br>It took you ' + countMoves.innerText + ' moves';
+                    modalMessage += '<br>You got <ul class="modal-stars">' + starRating.innerHTML  + '</ul> stars';
                     modalMessage += '<br>Would you like to play again? ';
-                    // how much time it took to win the game, and what the star rating was.
                     modalContent.innerHTML = modalMessage;
 
                     span.addEventListener('click', function() {
@@ -196,6 +199,7 @@ function moveCounter() {
             }
         }
     }
+    // starRating.innerHTML = stars.length;
 }
 
 /*

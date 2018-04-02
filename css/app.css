@@ -132,8 +132,11 @@ html, body {
      text-decoration: none;
      cursor: pointer;
 }
- .stars {
+ .stars, .modal-stars {
      list-style-type: none;
+}
+.modal-stars {
+	display: inline-flex;
 }
  .moves, .timer {
      font-size: 1.3rem;
