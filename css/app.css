@@ -35,6 +35,7 @@ html, body {
      font-family: 'Fredericka the Great', cursive;
      background-color: peachpuff;
      color: #663399;
+		 font-weight: bold;
 }
  #deck {
      background:#663399;
