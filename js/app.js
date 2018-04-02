@@ -6,10 +6,10 @@ let cardsStorage = [];
 let cardsIds = [];
 let cardsFlipped = 0;
 
-let countMoves = document.querySelector('.moves');
-const stars = document.querySelectorAll('.fa-star'); // identify variables for star icons
-let deck = document.getElementById('deck');
-const restartBtn = document.querySelector('.restart');
+let countMoves = document.querySelector('.moves'); // moves counter
+const stars = document.querySelectorAll('.fa-star'); // star icons
+let deck = document.getElementById('deck'); // cards will be populated here
+const restartBtn = document.querySelector('.restart'); // restart button
 // Get the modal
 let modal = document.getElementById('myModal');
 const modalContent = document.querySelector('.modal-content p');
@@ -25,6 +25,7 @@ let interval;
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+// this function will shuffle array of cards
 function shuffle(array) {
     let currentIndex = array.length,temporaryValue, randomIndex;
 
@@ -39,6 +40,12 @@ function shuffle(array) {
     return array;
 }
 
+/*
+* newBoard creates populates .deck with div.card
+* every card have separate id created in a loop
+* resets number of moves, flipped cards, star rating to create new board
+*
+*/
 function newBoard() {
     moves = 0; // reset moves
     countMoves.innerHTML = moves;
@@ -61,13 +68,31 @@ function newBoard() {
 
 newBoard();
 
+/* function cardFlip
+* if nothing inside the div and that the amount of memory cards turned is less than two
+   The card can be flipped
+   if no cards already flipped or that there is only one card flipped
+     set the card as flipped and save them in the memory
+     else if one card is flipped
+     set the card as flipped and save them in the memory
+       if the values of the two cards are the same
+         add 2 to the match cards
+         if the amount on the cards is the same as the length of the memory
+           modal kicks in
+         else
+         If the two cards don't match cards will be flip back again after 600ms
+*
+*/
 function cardFlip(card, val) {
+  // nothing inside of div and cards in memory less then 2
     if (card.innerHTML == '' && cardsStorage.length < 2) {
-        moveCounter();
+        moveCounter(); // increase counter for 1
+        // flips card to front and shows it's letter
         card.style.background = '#ffffff';
         card.innerHTML = val;
+        // flipped cards go into memory
         if (cardsStorage.length == 0) {
-            // gets fitst card [0] and pushes into array
+            // gets first card [0] and pushes into array
             cardsStorage.push(val);
             cardsIds.push(card.id);
 
@@ -75,14 +100,14 @@ function cardFlip(card, val) {
             // gets both cards [0][1] and pushes them into array
             cardsStorage.push(val);
             cardsIds.push(card.id);
-
+            //  if two cards are the same
             if (cardsStorage[0] == cardsStorage[1]) {
-                // counts 8 pairs
+                // counting cards and adds 2 to storage
                 cardsFlipped += 2;
                 // Clear both arrays
                 cardsStorage = [];
                 cardsIds = [];
-                // Check to see if the whole board is cleared
+                // flipped cards equal length of memory game is over, modal kicks in
                 if (cardsFlipped === cardsArray.length) {
                     // modal starts here
                     modal.style.display = 'block';
@@ -101,6 +126,7 @@ function cardFlip(card, val) {
                     newBoard();
                 }
             } else {
+                // if cards don't match, flip the to back
                 function flip2Back() {
                     // Flip the two cards back over
                     let cardOne = document.getElementById(cardsIds[0]);
@@ -113,10 +139,11 @@ function cardFlip(card, val) {
                     cardTwo.innerHTML = '';
                     // add style.animation here
 
-                    // Clear both arrays
+                    // Clear memory
                     cardsStorage = [];
                     cardsIds = [];
                 }
+                // If the two cards are not the same, the cards will be flip back again
                 setTimeout(flip2Back, 600);
             }
         }
@@ -125,7 +152,8 @@ function cardFlip(card, val) {
 
 
 
-// Function to Calculate Game Time
+// function startTimer to calculate game time
+// increase 1sec at a time
 function startTimer() {
     interval = setInterval(function() {
         timer.innerHTML = minute + ' mins ' + second + ' secs ';
@@ -142,7 +170,10 @@ function startTimer() {
 }
 
 
-// Function to Calculate Moves
+/*
+* function moveCounter calculates number of moves and star rating
+* depending on number of moves, star rating is defined
+*/
 function moveCounter() {
     moves++;
     countMoves.textContent = moves;
@@ -167,7 +198,11 @@ function moveCounter() {
     }
 }
 
-// Function to Reset Board
+/*
+* function resetBoard
+* reseting timer interval
+* reseting count moves
+*/
 function resetBoard() {
     clearInterval(interval);
     timer.innerHTML = '0 mins 0 secs';
@@ -175,7 +210,7 @@ function resetBoard() {
     newBoard();
 }
 
-//Event Listener to restart game
+// event listener to restart game
 restartBtn.addEventListener('click', function() {
   resetBoard();
 });
