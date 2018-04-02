@@ -1,5 +1,7 @@
 # Memory Game Project
 
+The Memory Game Project for Udacity Front End Developer NanoDegree
+
 ## Table of Contents
 
 * [Instructions](#instructions)
@@ -16,7 +18,7 @@ There are 8 pairs of cards.
 Try matching pairs.
 
 
-## Flow of The game
+## Flow
 
 Cards are shuffled on load or restart
 Game is displaying current number of moves a user has made
@@ -29,7 +31,7 @@ Modal shows: How much time it took and star rating.
 Download or clone the project
 Access the project folder and run index.html in your browser
 
-### Installing
+## Installing
 
 1. Download or clone the project
 2. Access the project folder and run index.html in your browser
